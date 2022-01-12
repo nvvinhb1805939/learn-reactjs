@@ -1,13 +1,13 @@
-import logo from "./logo.svg";
+import AlbumFeature from "features/Album";
+import React from "react";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hi, I am Nguyen Van Vinh</p>
-      </header>
+      {/* <h2>Todo List</h2>
+      <TodoFeature /> */}
+      <AlbumFeature />
     </div>
   );
 }
