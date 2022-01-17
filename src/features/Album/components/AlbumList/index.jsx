@@ -1,6 +1,6 @@
 import React from "react";
 import AlbumItem from "../Album";
-import "./style.css";
+import "./style.scss";
 
 function AlbumList({ albumList }) {
   return (

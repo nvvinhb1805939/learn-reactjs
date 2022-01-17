@@ -1,0 +1,38 @@
+* {
+  transition: 0.25s;
+}
+a {
+  text-decoration: none;
+}
+.course__link {
+  display: block;
+  color: black;
+  .course__thumbnail {
+    display: block;
+    max-width: 100%;
+    border-radius: 20px;
+  }
+  .course__title {
+    margin: 12px 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .course__students_count {
+    display: flex;
+    align-items: center;
+
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 400;
+    .course__svg {
+      width: 20px;
+      margin-right: 12px;
+    }
+  }
+  &:hover .course__thumbnail {
+    opacity: 0.6;
+  }
+  &:hover .course__title {
+    color: #186da5;
+  }
+}

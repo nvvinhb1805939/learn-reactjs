@@ -1,9 +1,0 @@
-ul {
-  list-style: none;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-}
-li {
-  width: 190px;
-}
