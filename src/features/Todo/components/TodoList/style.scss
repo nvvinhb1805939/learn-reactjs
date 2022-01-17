@@ -1,0 +1,7 @@
+.list {
+  cursor: pointer;
+  &.active {
+    font-style: italic;
+    color: #ccc;
+  }
+}

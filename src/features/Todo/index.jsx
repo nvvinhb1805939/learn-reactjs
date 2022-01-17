@@ -1,22 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoList from "./components/TodoList";
 
 function TodoFeature(props) {
-  const todoList = [
+  const initialTodoList = [
     {
       id: 1,
       action: "Eating",
+      status: "new",
     },
     {
       id: 2,
       action: "Sleeping",
+      status: "completed",
     },
     {
       id: 3,
       action: "Coding",
+      status: "new",
     },
   ];
-  return <TodoList todoList={todoList} />;
+  const [todoList, setTodoList] = useState(initialTodoList);
+  const [filteredStatus, setFilteredStatus] = useState("all");
+  const handleTodoClick = index => {
+    const newTodoList = [...todoList];
+    newTodoList[index] = {
+      ...newTodoList[index],
+      status: newTodoList[index].status === "new" ? "completed" : "new",
+    };
+    setTodoList(newTodoList);
+  };
+
+  const handleShowAll = () => {
+    setFilteredStatus("all");
+  };
+  const handleShowCompleted = () => {
+    setFilteredStatus("completed");
+  };
+  const handleShowNew = () => {
+    setFilteredStatus("new");
+  };
+  const filteredList = todoList.filter(
+    todoItem => filteredStatus === "all" || filteredStatus === todoItem.status
+  );
+  console.log(filteredList);
+  return (
+    <>
+      <TodoList todoList={filteredList} onTodoClick={handleTodoClick} />
+      <div>
+        <button onClick={handleShowAll}>Show All</button>
+        <button onClick={handleShowCompleted}>Show Completed</button>
+        <button onClick={handleShowNew}>Show New</button>
+      </div>
+    </>
+  );
 }
 
 export default TodoFeature;
