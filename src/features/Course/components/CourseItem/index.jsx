@@ -3,7 +3,12 @@ import "./style.scss";
 
 function CourseItem({ courseItem }) {
   return (
-    <a className="course__link" href="./">
+    <a
+      className="course__link"
+      href={"https://fullstack.edu.vn/courses/" + courseItem.slug}
+      target="_blank"
+      rel="noreferrer"
+    >
       <img
         className="course__thumbnail"
         src={courseItem.image_url}
