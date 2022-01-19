@@ -1,11 +1,10 @@
-import CourseFeature from "features/Course";
+import ColorBox from "features/ColorBox";
 import React from "react";
-// import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <CourseFeature />
+      <ColorBox />
     </div>
   );
 }
