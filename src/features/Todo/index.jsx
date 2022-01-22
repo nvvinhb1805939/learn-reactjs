@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 function TodoFeature(props) {
@@ -29,7 +30,6 @@ function TodoFeature(props) {
     };
     setTodoList(newTodoList);
   };
-
   const handleShowAll = () => {
     setFilteredStatus("all");
   };
@@ -42,16 +42,23 @@ function TodoFeature(props) {
   const filteredList = todoList.filter(
     todoItem => filteredStatus === "all" || filteredStatus === todoItem.status
   );
-  console.log(filteredList);
+
+  const handleSubmit = formValues => {
+    const newTodoList = [...todoList];
+    newTodoList.push(formValues);
+    setTodoList(newTodoList);
+  };
+
   return (
-    <>
+    <div className="todo__container">
+      <TodoForm onSubmit={handleSubmit} />
       <TodoList todoList={filteredList} onTodoClick={handleTodoClick} />
       <div>
         <button onClick={handleShowAll}>Show All</button>
         <button onClick={handleShowCompleted}>Show Completed</button>
         <button onClick={handleShowNew}>Show New</button>
       </div>
-    </>
+    </div>
   );
 }
 
