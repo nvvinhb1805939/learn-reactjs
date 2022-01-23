@@ -1,0 +1,14 @@
+.post__pagination {
+  display: flex;
+  justify-content: center;
+}
+.post__btn {
+  cursor: pointer;
+  margin-inline: 4px;
+
+  &.active {
+    background-color: black;
+    color: white;
+    pointer-events: none;
+  }
+}
