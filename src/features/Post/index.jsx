@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
 import querystring from "query-string";
+import React, { useEffect, useState } from "react";
 import Pagination from "./components/Pagination";
 import PostList from "./components/PostList";
+import SearchForm from "./components/SearchForm";
 import "./Post.scss";
 
 function PostFeature() {
@@ -15,8 +16,10 @@ function PostFeature() {
     const newFilter = {
       _limit: 10,
       _page: 1,
+      title_like: "",
     };
-    return JSON.parse(localStorage.getItem("newFilter")) || newFilter;
+    const lastFilter = JSON.parse(localStorage.getItem("newFilter"));
+    return lastFilter || newFilter;
   });
   useEffect(() => {
     const fetchPostList = async () => {
@@ -37,11 +40,23 @@ function PostFeature() {
   const handlePageChange = page => {
     const newFilter = { ...filter, _page: page };
     setFilter(newFilter);
-    localStorage.setItem("newFilter", JSON.stringify(newFilter));
+    if (newFilter["title_like"] === "") {
+      localStorage.setItem("newFilter", JSON.stringify(newFilter));
+    }
   };
+  const handleSearchTermChange = value => {
+    const newFilter = {
+      ...filter,
+      _page: 1,
+      title_like: value,
+    };
+    setFilter(newFilter);
+  };
+
   return (
     <div className="post__container">
       <h1 className="post__heading">Post list</h1>
+      <SearchForm onSubmit={handleSearchTermChange} />
       <PostList posts={post} />
       <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </div>
