@@ -1,0 +1,13 @@
+.clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0e6994;
+}
+.clock__timer {
+  color: white;
+}
+
+/*# sourceMappingURL=style.css.map */

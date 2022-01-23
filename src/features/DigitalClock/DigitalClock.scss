@@ -1,0 +1,16 @@
+.clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: #0e6994;
+
+  &__timer {
+    color: white;
+    font-size: 50px;
+    font-weight: 5500;
+    letter-spacing: 0.05em;
+  }
+}
