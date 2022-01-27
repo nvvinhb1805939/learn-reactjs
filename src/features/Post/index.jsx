@@ -6,6 +6,7 @@ import SearchForm from "./components/SearchForm";
 import "./Post.scss";
 
 function PostFeature() {
+  console.log("re-rednder");
   const [post, setPost] = useState([]);
   const [pagination, setPagination] = useState({
     _limit: 10,
@@ -33,6 +34,7 @@ function PostFeature() {
         setPagination(pagination);
       } catch (error) {
         console.log(error.message);
+        alert(error.messag);
       }
     };
     fetchPostList();
