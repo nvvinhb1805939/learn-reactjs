@@ -4,22 +4,16 @@ import NewTodoItem from "../NewTodoItem";
 
 NewTodoList.propTypes = {
   todoList: PropTypes.array,
-  onTodoClick: PropTypes.func,
 };
 NewTodoList.defaultProps = {
   todoList: [],
-  onTodoClick: null,
 };
 
-function NewTodoList({ todoList, onTodoClick }) {
+function NewTodoList({ todoList }) {
   return (
     <ul>
       {todoList.map(todoItem => (
-        <NewTodoItem
-          key={todoItem.id}
-          todoItem={todoItem}
-          onTodoClick={onTodoClick}
-        />
+        <NewTodoItem key={todoItem.id} todoItem={todoItem} />
       ))}
     </ul>
   );

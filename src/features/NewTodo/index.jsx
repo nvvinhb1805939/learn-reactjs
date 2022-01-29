@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import NewTodoForm from "./components/NewTodoForm";
 import NewTodoList from "./components/NewTodoList";
+
+export const HandleTodoClickContext = createContext();
 
 function NewTodoFeature() {
   const [todoList, setTodoList] = useState([]);
@@ -20,11 +22,13 @@ function NewTodoFeature() {
     setTodoList(newTodoList);
   };
   return (
-    <div>
-      <h2>Todo List</h2>
-      <NewTodoForm onSubmit={handleSubmit} />
-      <NewTodoList todoList={todoList} onTodoClick={handleTodoClick} />
-    </div>
+    <HandleTodoClickContext.Provider value={handleTodoClick}>
+      <div>
+        <h2>Todo List</h2>
+        <NewTodoForm onSubmit={handleSubmit} />
+        <NewTodoList todoList={todoList} />
+      </div>
+    </HandleTodoClickContext.Provider>
   );
 }
 
