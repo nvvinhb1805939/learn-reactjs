@@ -1,4 +1,5 @@
-import NewTodoFeature from "features/NewTodo";
+import DigitalClock from "features/DigitalClock";
+import MagicBox from "features/MagicBox";
 import React from "react";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <div className="container" style={styles}>
-        <NewTodoFeature />
+        <MagicBox />
       </div>
     </div>
   );
