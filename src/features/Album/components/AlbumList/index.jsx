@@ -4,9 +4,9 @@ import "./style.scss";
 
 function AlbumList({ albumList }) {
   return (
-    <ul>
+    <ul className="album__list">
       {albumList.map(albumItem => (
-        <li key={albumItem.id}>
+        <li key={albumItem.id} className="album__item">
           <AlbumItem albumItem={albumItem} />
         </li>
       ))}

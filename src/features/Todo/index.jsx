@@ -50,7 +50,7 @@ function TodoFeature(props) {
   };
 
   return (
-    <div className="todo__container">
+    <div className="todo__container" style={{ textAlign: "center" }}>
       <TodoForm onSubmit={handleSubmit} />
       <TodoList todoList={filteredList} onTodoClick={handleTodoClick} />
       <div>

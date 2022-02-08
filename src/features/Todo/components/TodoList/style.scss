@@ -1,5 +1,6 @@
 .list {
   cursor: pointer;
+  list-style-type: none;
   &.active {
     font-style: italic;
     color: #bbb;

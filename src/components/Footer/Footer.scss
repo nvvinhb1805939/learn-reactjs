@@ -1,0 +1,13 @@
+.footer {
+  $height: 80px;
+
+  height: $height;
+  background-color: #2985cf;
+  color: white;
+
+  text-align: center;
+  line-height: $height;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

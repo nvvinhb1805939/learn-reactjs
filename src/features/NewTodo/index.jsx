@@ -23,7 +23,7 @@ function NewTodoFeature() {
   };
   return (
     <HandleTodoClickContext.Provider value={handleTodoClick}>
-      <div>
+      <div style={{ textAlign: "center" }}>
         <h2>Todo List</h2>
         <NewTodoForm onSubmit={handleSubmit} />
         <NewTodoList todoList={todoList} />
