@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import queryString from "query-string";
+import React, { useEffect, useMemo, useState } from "react";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 function TodoFeature(props) {
+  const location = useLocation();
+  const history = useHistory();
+  const routeMatch = useRouteMatch();
   const initialTodoList = [
     {
       id: 1,
@@ -21,7 +26,14 @@ function TodoFeature(props) {
     },
   ];
   const [todoList, setTodoList] = useState(initialTodoList);
-  const [filteredStatus, setFilteredStatus] = useState("all");
+  const [filteredStatus, setFilteredStatus] = useState(() => {
+    const params = queryString.parse(location.search);
+    return params.status || "all";
+  });
+  useEffect(() => {
+    const params = queryString.parse(location.search);
+    setFilteredStatus(params.status || "all");
+  }, [location.search]);
   const handleTodoClick = index => {
     const newTodoList = [...todoList];
     newTodoList[index] = {
@@ -31,17 +43,31 @@ function TodoFeature(props) {
     setTodoList(newTodoList);
   };
   const handleShowAll = () => {
-    setFilteredStatus("all");
+    const queryParams = { status: "all" };
+    history.push({
+      pathname: routeMatch.path,
+      search: queryString.stringify(queryParams),
+    });
   };
   const handleShowCompleted = () => {
-    setFilteredStatus("completed");
+    const queryParams = { status: "completed" };
+    history.push({
+      pathname: routeMatch.path,
+      search: queryString.stringify(queryParams),
+    });
   };
   const handleShowNew = () => {
-    setFilteredStatus("new");
+    const queryParams = { status: "new" };
+    history.push({
+      pathname: routeMatch.path,
+      search: queryString.stringify(queryParams),
+    });
   };
-  const filteredList = todoList.filter(
-    todoItem => filteredStatus === "all" || filteredStatus === todoItem.status
-  );
+  const filteredList = useMemo(() => {
+    return todoList.filter(
+      todoItem => filteredStatus === "all" || filteredStatus === todoItem.status
+    );
+  }, [filteredStatus, todoList]);
 
   const handleSubmit = formValues => {
     const newTodoList = [...todoList];

@@ -1,6 +1,10 @@
 .header {
   $height: 80px;
 
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+
   height: $height;
   background-color: #2985cf;
   color: white;

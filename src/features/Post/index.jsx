@@ -1,3 +1,4 @@
+import NotFound from "features/NotFound";
 import React from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
@@ -9,7 +10,12 @@ function PostFeature() {
   return (
     <Switch>
       <Route path={routeMatch.path} component={PostsList} exact />
-      <Route path={`${routeMatch.path}/:postTitle`} component={DetailPost} />
+      <Route
+        path={`${routeMatch.path}/:postTitle`}
+        component={DetailPost}
+        exact
+      />
+      <Route component={NotFound}></Route>
     </Switch>
   );
 }
