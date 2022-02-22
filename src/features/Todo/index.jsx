@@ -4,7 +4,8 @@ import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
-function TodoFeature(props) {
+function TodoFeature() {
+  console.log('render');
   const location = useLocation();
   const history = useHistory();
   const routeMatch = useRouteMatch();
@@ -26,6 +27,7 @@ function TodoFeature(props) {
     },
   ];
   const [todoList, setTodoList] = useState(initialTodoList);
+  const [id, setId] = useState(3);
   const [filteredStatus, setFilteredStatus] = useState(() => {
     const params = queryString.parse(location.search);
     return params.status || 'all';
@@ -67,12 +69,17 @@ function TodoFeature(props) {
     return todoList.filter(todoItem => filteredStatus === 'all' || filteredStatus === todoItem.status);
   }, [filteredStatus, todoList]);
 
-  const handleSubmit = formValues => {
-    // const newTodoList = [...todoList];
-    // newTodoList.push(formValues);
-    // setTodoList(newTodoList);
-    console.log('Form Values: ', formValues);
+  const handleSubmit = ({ action }) => {
+    console.log('Form Values: ', action);
+    const data = {
+      id: id + 1,
+      action,
+      status: 'new',
+    };
+    setTodoList([...todoList, data]);
+    setId(prevId => prevId + 1);
   };
+  console.log(id);
 
   return (
     <div className='todo__container' style={{ textAlign: 'center' }}>

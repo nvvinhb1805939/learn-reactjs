@@ -15,15 +15,22 @@ InputField.defaultProps = {
   disabled: false,
 };
 
-function InputField({ formState, control, name, label, disabled }) {
-  console.log('errors', formState.errors);
-  console.log('touched fields', formState.touchedFields);
+function InputField({ control, name, label, disabled }) {
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange } }) => (
-        <TextField label={label} size='small' color='secondary' disabled={disabled} onChange={onChange} />
+      render={({ field: { onChange, value }, formState: { errors } }) => (
+        <TextField
+          value={value}
+          label={label}
+          size='small'
+          color='secondary'
+          disabled={disabled}
+          onChange={onChange}
+          error={!!errors[name]}
+          helperText={errors[name]?.message}
+        />
       )}
     />
   );

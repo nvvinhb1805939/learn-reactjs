@@ -13,47 +13,27 @@ TodoForm.defaultProps = {
 };
 
 function TodoForm({ onSubmit }) {
-  // const form = useForm({
-  //   defaultValues: {
-  //     title: '',
-  //   },
-  // });
-  // console.log('form', form);
-  // const [value, setValue] = useState("");
-  // const handleInput = e => {
-  //   setValue(e.target.value);
-  // };
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   if (!onSubmit) return;
-  //   const formValues = {
-  //     id: Math.floor(Math.random() * 9999),
-  //     action: value,
-  //     status: "new",
-  //   };
-  //   onSubmit(formValues);
-  //   setValue("");
-  // };
-
   const schema = yup
     .object({
-      todo: yup.string().required('Please fill todo!'),
+      action: yup.string().trim().required('Please fill todo!').min(5, 'Todo must larger than 4 character!'),
     })
     .required();
-  const { formState, handleSubmit, control } = useForm({
+  const { handleSubmit, reset, control } = useForm({
     defaultValues: {
-      todo: '',
+      action: '',
     },
     resolver: yupResolver(schema),
   });
   const handleFormSubmit = formValues => {
-    console.log('submit', formValues);
-    // onSubmit(formValues);
+    if (onSubmit) {
+      onSubmit(formValues);
+      reset();
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
-      <InputField formState={formState} control={control} name='todo' label='New Todo' />
+      <InputField control={control} name='action' label='New Todo' />
     </form>
   );
 }
